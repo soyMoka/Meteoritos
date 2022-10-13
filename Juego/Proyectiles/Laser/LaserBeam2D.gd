@@ -46,9 +46,10 @@ func set_is_casting(cast: bool) -> void:
 		fill.points[1] = cast_to
 		appear()
 	else:
-		laser_sfx.stop()      #Para el sonido al soltar el click
+			#Para el sonido al soltar el click
 		collision_particles.emitting = false
 		disappear()
+		laser_sfx.stop()  
 	set_physics_process(is_casting)
 	beam_particles.emitting = is_casting
 	casting_particles.emitting = is_casting

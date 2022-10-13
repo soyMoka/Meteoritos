@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Juego/Naves/playerShip1_0.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Naves/Player.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Proyectiles/Laser/LaserBeam2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/Proyectiles/Proyectil_player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Naves/Estela/Trail2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Naves/MotorSFX.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Juego/Naves/MotorSFX00.ogg" type="AudioStream" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 38.0132
@@ -42,5 +45,19 @@ position = Vector2( 0, 34 )
 [node name="LaserBeam2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( 42, 0.00321362 )
 cast_to = Vector2( 1, 7.65147e-05 )
+
+[node name="EstelaPuntInicial" type="Position2D" parent="."]
+position = Vector2( -14, -0.00107121 )
+
+[node name="Trail2D" parent="EstelaPuntInicial" instance=ExtResource( 7 )]
+points = PoolVector2Array( 0, 0, 60, 0 )
+width = 40.0
+is_emitting = true
+target_path = NodePath("..")
+
+[node name="MotorSFX" parent="." instance=ExtResource( 8 )]
+stream = ExtResource( 9 )
+volume_db = -1.238
+pitch_scale = 0.85
 
 [editable path="Canion"]

@@ -14,7 +14,8 @@ var dir_rotacion:int = 0
 ## Atributos 
 onready var canion:Canion = $Canion
 onready var laser:RayoLaser = $LaserBeam2D 
-
+onready var estela:Estela = $EstelaPuntInicial/Trail2D
+onready var motor_sfx:Motor = $MotorSFX
 
 ## Metodos
 func _unhandled_input(event: InputEvent)-> void:
@@ -23,6 +24,22 @@ func _unhandled_input(event: InputEvent)-> void:
 		laser.set_is_casting(true)
 	if event.is_action_released("disparo_secundario"):
 		laser.set_is_casting(false)
+		
+		
+		# Control de estela y motor
+	if event.is_action_pressed("mover_adelante"):
+		estela.set_max_points(150)
+		estela.set_lifetime(0.8)
+		motor_sfx.sonido_on()
+	elif event.is_action_pressed("mover_atras"):
+		estela.set_max_points(10)
+		estela.set_lifetime(0.6)
+		motor_sfx.sonido_on()
+	
+	if (event.is_action_released('mover_adelante') or event.is_action_released('mover_atras')):
+		motor_sfx.sonido_off()
+		
+		
 
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	
@@ -42,6 +59,8 @@ func player_input() -> void:
 		empuje = Vector2(potencia_motor, 0)
 	elif Input.is_action_pressed("mover_atras"):
 		empuje = Vector2(-potencia_motor, 0)
+	
+
 	
 	# Rotacion
 	dir_rotacion = 0
