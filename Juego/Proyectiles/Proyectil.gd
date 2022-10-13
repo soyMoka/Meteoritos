@@ -1,4 +1,4 @@
-class_name Proyectil
+class_name ProyectilPlayer
 extends Area2D
 
 ## Atributo

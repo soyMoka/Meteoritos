@@ -20,5 +20,5 @@ func crear_contenedores() -> void:
 	add_child(contenedor_proyectiles)
 	print('creado el coso')
 
-func _on_disparo(proyectil:Proyectil) -> void:
+func _on_disparo(proyectil:ProyectilPlayer) -> void:
 	add_child(proyectil)
