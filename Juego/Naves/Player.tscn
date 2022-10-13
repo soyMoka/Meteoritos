@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Juego/Naves/playerShip1_0.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Naves/Player.gd" type="Script" id=2]
 [ext_resource path="res://Juego/Naves/fisic_material_player.tres" type="PhysicsMaterial" id=3]
 [ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Proyectiles/Laser/LaserBeam2D.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 38.0132
@@ -32,5 +33,9 @@ position = Vector2( 0, -34 )
 
 [node name="PuntoDer" parent="Canion" index="1"]
 position = Vector2( 0, 34 )
+
+[node name="LaserBeam2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 42, 0.00321362 )
+cast_to = Vector2( 1, 7.65147e-05 )
 
 [editable path="Canion"]
