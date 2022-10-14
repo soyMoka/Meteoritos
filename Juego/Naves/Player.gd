@@ -8,7 +8,7 @@ enum ESTADO {SPAWN, VIVO, INVENCIBLE, MUERTO}
 ## Atributos Export
 export var potencia_motor:int = 20
 export var potencia_rotacion:int = 280
-
+export var hitpoints:float = 15.0
 
 ## Atributos
 var empuje:Vector2 = Vector2.ZERO
@@ -22,6 +22,7 @@ onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estela = $EstelaPuntInicial/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
+onready var danio_sfx:AudioStreamPlayer = $DanioSFX
 
 
 ## Metodos
@@ -90,7 +91,6 @@ func controlador_estados(nuevo_estado: int) ->void:
 func esta_input_activo()->bool:
 	if estado_actual in [ESTADO.MUERTO, ESTADO.SPAWN]:
 		return false
-		return false
 	return true
 
 func player_input() -> void:
@@ -121,6 +121,14 @@ func player_input() -> void:
 func destruir() ->void:
 	controlador_estados(ESTADO.MUERTO)
 
+
+func recibir_danio(danio:float) -> void:
+	hitpoints -= danio		
+	if hitpoints <= 0.0:
+		destruir()
+		
+	danio_sfx.play()
+		
 		
 ## Señales internas	
 func _on_AnimationPlayer_animation_finished(anim_name: String) ->void:
