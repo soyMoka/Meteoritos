@@ -23,7 +23,7 @@ onready var estela:Estela = $EstelaPuntInicial/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
 onready var danio_sfx:AudioStreamPlayer = $DanioSFX
-
+onready var escudo:Escudo = $Escudo
 
 ## Metodos
 func _ready()->void:
@@ -35,13 +35,19 @@ func _unhandled_input(event: InputEvent)-> void:
 	if not esta_input_activo():
 		return
 		
-	#Disparo de laser
+	## Disparo de laser
 	if event.is_action_pressed("disparo_secundario"):
 		laser.set_is_casting(true)
 	if event.is_action_released("disparo_secundario"):
 		laser.set_is_casting(false)
 		
-		# Control de estela y motor
+	
+	## Control escudo
+	if event.is_action_pressed("escudo") and not escudo.get_esta_activado():
+		escudo.activar()
+	
+	
+	## Control de estela y motor
 	if event.is_action_pressed("mover_adelante"):
 		estela.set_max_points(150)
 		estela.set_lifetime(0.8)
@@ -53,6 +59,7 @@ func _unhandled_input(event: InputEvent)-> void:
 	
 	if (event.is_action_released('mover_adelante') or event.is_action_released('mover_atras')):
 		motor_sfx.sonido_off()
+		
 		
 		
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
