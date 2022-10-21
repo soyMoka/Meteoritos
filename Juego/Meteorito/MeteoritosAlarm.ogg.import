@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MeteoritosAlarm.ogg-22f40c109c8783f0d4c521cf3a1e4b07.oggstr"
+
+[deps]
+
+source_file="res://Juego/Meteorito/MeteoritosAlarm.ogg"
+dest_files=[ "res://.import/MeteoritosAlarm.ogg-22f40c109c8783f0d4c521cf3a1e4b07.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

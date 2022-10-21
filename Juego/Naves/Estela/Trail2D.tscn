@@ -6,10 +6,11 @@
 _data = [ Vector2( 0, 0 ), 0.0, 1.0, 0, 1, Vector2( 1, 1 ), 1.0, 0.0, 1, 0 ]
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.325758, 1 )
-colors = PoolColorArray( 0.294118, 0.356863, 0.670588, 0, 0.0913822, 0.546247, 0.490866, 0.744318, 0.0238037, 0.609375, 0.430959, 0.992424 )
+offsets = PoolRealArray( 0, 0.325758, 0.954198, 1 )
+colors = PoolColorArray( 0.294118, 0.356863, 0.670588, 0, 0.0913822, 0.546247, 0.490866, 0.744318, 0.0283943, 0.605087, 0.435028, 0.97557, 0.0238037, 0.609375, 0.430959, 0.992424 )
 
 [node name="Trail2D" type="Line2D"]
+modulate = Color( 0.972549, 0.972549, 0.972549, 1 )
 points = PoolVector2Array( 0, 0, 32, 0 )
 width_curve = SubResource( 1 )
 default_color = Color( 1, 1, 1, 1 )

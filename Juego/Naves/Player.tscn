@@ -97,6 +97,7 @@ position = Vector2( 0, 34 )
 [node name="LaserBeam2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( 42, 0.00321362 )
 cast_to = Vector2( 1, 7.65147e-05 )
+max_length = 2000.0
 
 [node name="EstelaPuntInicial" type="Position2D" parent="."]
 position = Vector2( -14, -0.00107121 )
@@ -124,6 +125,9 @@ pitch_scale = 1.18
 bus = "SFX"
 
 [node name="Escudo" parent="." instance=ExtResource( 11 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
