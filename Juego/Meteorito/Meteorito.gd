@@ -16,7 +16,7 @@ var hitpoints:float
 var esta_en_sector:bool = true #setget set_esta_en_sector
 var pos_spawn_original:Vector2
 var vel_spawn_original:Vector2
-
+var esta_destruido:bool = false
 
 ## Setters y Getters
 func set_esta_en_sector(valor:bool)->void:
@@ -64,8 +64,11 @@ func recibir_danio(danio: float) ->void:
 	hitpoints -= danio
 	impacto_animacion.play("Impacto")
 	if hitpoints <= 0:
+		esta_destruido = true
 		destruir()
+		
 	impacto_sfx.play()
+	impacto_animacion.play("Impacto")
 	
 	
 func destruir()->void:
