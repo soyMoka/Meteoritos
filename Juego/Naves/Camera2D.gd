@@ -18,4 +18,4 @@ func _unhandled_input(event: InputEvent) -> void:
 func controlar_zoom(mod_zoom:float)->void:
 	var zoom_x =clamp(zoom.x + mod_zoom, zoom_min, zoom_max)
 	var zoom_y =clamp(zoom.y + mod_zoom, zoom_min, zoom_max)
-	zoom_suavizado(zoom_x, zoom_y, 015)
+	zoom_suavizado(zoom_x, zoom_y, 0.15)

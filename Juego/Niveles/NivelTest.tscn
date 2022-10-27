@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Juego/Naves/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Juego/Niveles/Fondos/blueBack.png" type="Texture" id=9]
 [ext_resource path="res://Juego/Meteorito/SectorMeteoritos.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=11]
+[ext_resource path="res://Juego/Estacion/EstacionRecarga.tscn" type="PackedScene" id=12]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
@@ -29,21 +30,23 @@ position = Vector2( 530, 269 )
 position = Vector2( 647, 516 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.9, 0.9 )
-motion_mirroring = Vector2( 256, 256 )
+motion_mirroring = Vector2( 1920, 1080 )
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-margin_right = 1934.0
-margin_bottom = 1099.0
+margin_left = -167.0
+margin_top = 492.0
+margin_right = 1767.0
+margin_bottom = 1591.0
 texture = ExtResource( 9 )
 stretch_mode = 2
 
 [node name="TriggersLluviaMeteoritos" type="Node" parent="."]
 
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 6 )]
-position = Vector2( 1356, 705 )
+position = Vector2( 1684, 1023 )
 
 [node name="CameraNivel" type="Camera2D" parent="."]
 script = ExtResource( 11 )
@@ -51,5 +54,10 @@ script = ExtResource( 11 )
 [node name="TweenCamara" type="Tween" parent="CameraNivel"]
 
 [node name="Icon" type="Sprite" parent="."]
+
+[node name="ContenedorEstaciones" type="Node" parent="."]
+
+[node name="EstacionDeRecarga" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
+position = Vector2( 1140, 1934 )
 
 [connection signal="tween_completed" from="CameraNivel/TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
