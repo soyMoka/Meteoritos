@@ -1,0 +1,233 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Juego/Naves/NaveBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TemporalAssets/kenney_spaceshooterextension/PNG/Sprites/Ships/spaceShips_007.png" type="Texture" id=2]
+[ext_resource path="res://TemporalAssets/spaceshooter/PNG/Lasers/laserRed10.png" type="Texture" id=3]
+[ext_resource path="res://Juego/Naves/Enemigos/EnemigoIntercept.gd" type="Script" id=4]
+[ext_resource path="res://Juego/Proyectiles/Proyectil_enemy.tscn" type="PackedScene" id=5]
+
+[sub_resource type="PhysicsMaterial" id=6]
+friction = 0.23
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 66.0019
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 925.019
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 514.001
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSpawn:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.8, 0.8 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteSpawn:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.8, 0.8 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "spawn"
+length = 0.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0.8, 0.8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpriteSpawn:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 4, 4 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpriteSpawn:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("SpriteSpawn:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="EnemigoInterceptor" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 15
+physics_material_override = SubResource( 6 )
+contact_monitor = true
+linear_damp = 1.0
+angular_damp = 3.0
+script = ExtResource( 4 )
+hitpoints = 5.0
+reventar_n_veces = 1
+potencia_max = 800.0
+
+[node name="Sprite" parent="." index="0"]
+rotation = -1.5708
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 2, 0.500229 )
+z_index = 30
+z_as_relative = false
+shape = SubResource( 3 )
+
+[node name="Canion" parent="." index="2"]
+proyectil = ExtResource( 5 )
+cadencia_disparo = 1.2
+velocidad_pryectil = 1200
+
+[node name="PuntoIzq" parent="Canion" index="0"]
+position = Vector2( 39.0017, -21.997 )
+
+[node name="PuntoDer" parent="Canion" index="1"]
+position = Vector2( 39.9983, 22.0031 )
+
+[node name="SpriteSpawn" type="Sprite" parent="." index="4"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 3 )
+
+[node name="AreaDisparo" type="Area2D" parent="." index="5"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDisparo" index="0"]
+modulate = Color( 0.12549, 0.85098, 0.101961, 0.768627 )
+shape = SubResource( 7 )
+
+[node name="AreaDeteccion" type="Area2D" parent="." index="6"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
+modulate = Color( 0.196078, 1, 0, 0.560784 )
+show_behind_parent = true
+shape = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+autoplay = "spawn"
+anims/RESET = SubResource( 4 )
+anims/default = SubResource( 5 )
+anims/spawn = SubResource( 2 )
+
+[connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]
+[connection signal="body_exited" from="AreaDisparo" to="." method="_on_AreaDisparo_body_exited"]
+[connection signal="body_entered" from="AreaDeteccion" to="." method="_on_AreaDeteccion_body_entered"]
+[connection signal="body_exited" from="AreaDeteccion" to="." method="_on_AreaDeteccion_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Canion"]

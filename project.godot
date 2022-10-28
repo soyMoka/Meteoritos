@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/Canion.gd"
 }, {
+"base": "NaveBase",
+"class": "EnemigoBase",
+"language": "GDScript",
+"path": "res://Juego/Naves/Enemigos/EnemigoBase.gd"
+}, {
+"base": "EnemigoBase",
+"class": "EnemigoIntercept",
+"language": "GDScript",
+"path": "res://Juego/Naves/Enemigos/EnemigoIntercept.gd"
+}, {
 "base": "Area2D",
 "class": "Escudo",
 "language": "GDScript",
@@ -59,15 +69,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Naves/MotorSFX.gd"
 }, {
+"base": "RigidBody2D",
+"class": "NaveBase",
+"language": "GDScript",
+"path": "res://Juego/Naves/NaveBase.gd"
+}, {
 "base": "Node2D",
 "class": "Nivel",
 "language": "GDScript",
 "path": "res://Juego/Niveles/Nivel.gd"
 }, {
-"base": "RigidBody2D",
+"base": "NaveBase",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Juego/Naves/Player.gd"
+"path": "res://Juego/Naves/Player/Player.gd"
 }, {
 "base": "Area2D",
 "class": "ProyectilPlayer",
@@ -88,6 +103,8 @@ _global_script_class_icons={
 "CamaraJuego": "",
 "CamaraPlayer": "",
 "Canion": "",
+"EnemigoBase": "",
+"EnemigoIntercept": "",
 "Escudo": "",
 "EstacionRecarga": "",
 "Estela": "",
@@ -95,6 +112,7 @@ _global_script_class_icons={
 "Meteorito": "",
 "MeteoritoSpawne": "",
 "Motor": "",
+"NaveBase": "",
 "Nivel": "",
 "Player": "",
 "ProyectilPlayer": "",
@@ -111,6 +129,7 @@ config/icon="res://icono_Meteoritos.png"
 [autoload]
 
 Eventos="*res://Juego/Autoloads/Eventos.gd"
+DatosJuego="*res://Juego/Autoloads/DatosJuego.gd"
 
 [display]
 
