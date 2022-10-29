@@ -12,6 +12,7 @@ height = 150.0
 
 [sub_resource type="Animation" id=5]
 length = 0.001
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("AreaColision:rotation_degrees")
 tracks/0/interp = 1
@@ -28,6 +29,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "activado"
 length = 10.0
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("AreaColision:rotation_degrees")
 tracks/0/interp = 1

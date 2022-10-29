@@ -1,16 +1,27 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
+[ext_resource path="res://Juego/Explosion/Explosion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Enemigos/EnemigoDummy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Meteorito/SectorMeteoritos.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Meteorito/Meteorito.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Niveles/Fondos/blueBack.png" type="Texture" id=9]
+[ext_resource path="res://Juego/Meteorito/ExplosionMeteorito.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=11]
 [ext_resource path="res://Juego/Estacion/EstacionRecarga.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Juego/Naves/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Juego/Estacion/BaseEnemiga.tscn" type="PackedScene" id=14]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
+explosion = ExtResource( 4 )
+meteorito = ExtResource( 8 )
+explosion_meteorito = ExtResource( 10 )
+sector_meteoritos = ExtResource( 7 )
+enemigo_interceptor = ExtResource( 13 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -39,6 +50,7 @@ stretch_mode = 2
 
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 6 )]
 position = Vector2( 1684, 1023 )
+numero_peligros = 11
 
 [node name="CameraNivel" type="Camera2D" parent="."]
 script = ExtResource( 11 )
@@ -51,6 +63,8 @@ script = ExtResource( 11 )
 
 [node name="EstacionDeRecarga" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
 position = Vector2( 1140, 1934 )
+energia = 50.0
+radio_energia_entregada = 0.1
 
 [node name="TriggersInterceptores" type="Node" parent="."]
 
@@ -58,5 +72,8 @@ position = Vector2( 1140, 1934 )
 position = Vector2( 423, -174 )
 tipo_peligro = "Enemy"
 numero_peligros = 2
+
+[node name="BaseEnemiga" parent="." instance=ExtResource( 14 )]
+position = Vector2( -340, 686 )
 
 [connection signal="tween_completed" from="CameraNivel/TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

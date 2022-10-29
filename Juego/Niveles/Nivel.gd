@@ -37,7 +37,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("spawn_meteorito", self, "_on_spawn_meteoritos")
 	Eventos.connect("meteorito_destruido", self, "_on_meteorito_destruido")
 	Eventos.connect("nave_en_sector_peligro", self, '_on_nave_en_sector_peligro')
-	Eventos.connect("base_destruida", self, 'on_base_destruida')
+	Eventos.connect("base_destruida", self, '_on_base_destruida')
 	
 ## Metodos Custom	
 
@@ -175,7 +175,7 @@ func _on_base_destruida(pos_partes:Array)->void:
 func crear_explosion(
 	position:Vector2,
 	numero:int = 1,
-	intervalo: float = 0.0,
+	intervalo: float = 0.3,
 	rangos_aleatorios:Vector2=Vector2(0.0, 0.0)
 	) -> void:
 		for i in range(numero):

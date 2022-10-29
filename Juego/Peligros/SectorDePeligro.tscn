@@ -6,6 +6,7 @@
 extents = Vector2( 449, 277 )
 
 [node name="SectorDePeligro" type="Area2D"]
+collision_layer = 0
 script = ExtResource( 1 )
 tipo_peligro = "Meteorite"
 

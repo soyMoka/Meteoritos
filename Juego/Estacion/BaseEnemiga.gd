@@ -5,7 +5,7 @@ extends Node2D
 export var hitpoints:float = 30.0
 
 ## Atributos Onready
-onready var impacto_sfx:AudioStreamPlayer = $ImpactosSFX
+onready var impacto_sfx:AudioStreamPlayer2D = $ImpactosSFX
 
 ## Atributos
 var esta_destruida:bool = false
