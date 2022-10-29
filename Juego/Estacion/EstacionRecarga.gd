@@ -64,11 +64,7 @@ func _on_AreaRecarga_body_entered(body: Node) -> void:
 		nave_player = body
 		player_en_zona = true
 	
-	body.set_gravity_scale(0.1)
-
 func _on_AreaRecarga_body_exited(body: Node) -> void:
 	player_en_zona = false
-	body.set_gravity_scale(0.0)
 	if carga_sfx.playing:
 		carga_sfx.stop()
-

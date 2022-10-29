@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://TemporalAssets/uipack-space/PNG/dotWhite.png" type="Texture" id=1]
+[ext_resource path="res://Juego/Estacion/AreaAtraccion.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 479.025
+
+[node name="AreaAtraccon" type="Area2D"]
+collision_layer = 0
+space_override = 1
+gravity_point = true
+gravity = 1000.0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="SpriteZonaRecarga" type="Sprite" parent="."]
+modulate = Color( 0.0313726, 0.639216, 0.705882, 0.129412 )
+scale = Vector2( 45.1667, 45.1667 )
+z_index = -1
+texture = ExtResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

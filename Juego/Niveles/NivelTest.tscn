@@ -1,26 +1,16 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
-[ext_resource path="res://Juego/Explosion/Explosion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Enemigos/EnemigoDummy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Juego/Meteorito/Meteorito.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Juego/Meteorito/ExplosionMeteorito.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Niveles/Fondos/blueBack.png" type="Texture" id=9]
-[ext_resource path="res://Juego/Meteorito/SectorMeteoritos.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=11]
 [ext_resource path="res://Juego/Estacion/EstacionRecarga.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Juego/Naves/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=13]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
-explosion = ExtResource( 4 )
-meteorito = ExtResource( 7 )
-explosion_meteorito = ExtResource( 8 )
-sector_meteoritos = ExtResource( 10 )
-enemigo_interceptor = ExtResource( 13 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )

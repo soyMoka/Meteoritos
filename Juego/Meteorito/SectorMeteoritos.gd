@@ -51,5 +51,6 @@ func _on_Timer_timeout() -> void:
 
 
 func _on_detector_body_entered(body:Node)->void:	
-	body.set_esta_en_sector(false)
-	
+	if body.has_method('set_esta_en_sector'):
+		body.set_esta_en_sector(false)
+

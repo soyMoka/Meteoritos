@@ -1,0 +1,188 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Juego/Estacion/AreaAtraccion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/Estacion/BaseEnemiga1.png" type="Texture" id=2]
+[ext_resource path="res://Juego/Estacion/BaseEnemiga3.png" type="Texture" id=3]
+[ext_resource path="res://Juego/Estacion/BaseEnemiga2.png" type="Texture" id=4]
+[ext_resource path="res://Juego/Estacion/BaseEnemiga4.png" type="Texture" id=5]
+[ext_resource path="res://Juego/Estacion/BaseEnemiga.gd" type="Script" id=6]
+[ext_resource path="res://Juego/Enemigos/Area2D.gd" type="Script" id=7]
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 54.1152
+height = 364.481
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 16.1071
+height = 39.4108
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 21.4465
+height = 71.447
+
+[sub_resource type="Animation" id=1]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "rotacion_anti_horario"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AreaAtraccon:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "rotacion_horario"
+length = 7.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.001, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 360.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AreaAtraccon:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="BaseEnemiga" type="Node2D"]
+z_index = 30
+z_as_relative = false
+script = ExtResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Brazo" type="Sprite" parent="Sprites"]
+position = Vector2( 149, 1 )
+rotation = -3.14159
+texture = ExtResource( 2 )
+
+[node name="Body" type="Sprite" parent="Sprites"]
+position = Vector2( -4, 97 )
+texture = ExtResource( 4 )
+
+[node name="Cabeza" type="Sprite" parent="Sprites"]
+position = Vector2( 0, -167 )
+texture = ExtResource( 3 )
+
+[node name="Cuello" type="Sprite" parent="Sprites"]
+position = Vector2( 0, -120 )
+texture = ExtResource( 5 )
+
+[node name="AreaColision" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 13
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaColision"]
+position = Vector2( 1.33484, 49.389 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AreaColision"]
+position = Vector2( -98.7781, -2.66971 )
+rotation = -1.5708
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="AreaColision"]
+position = Vector2( 133.484, -3.05176e-05 )
+rotation = -1.5708
+shape = SubResource( 6 )
+
+[node name="AreaAtraccon" parent="." instance=ExtResource( 1 )]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/default = SubResource( 1 )
+anims/rotacion_anti_horario = SubResource( 3 )
+anims/rotacion_horario = SubResource( 2 )
+
+[node name="ImpactosSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
