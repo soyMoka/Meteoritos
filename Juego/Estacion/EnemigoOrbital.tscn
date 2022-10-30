@@ -35,6 +35,7 @@ script = ExtResource( 4 )
 hitpoints = 5.0
 reventar_n_veces = 1
 rango_max_ataque = 1000.0
+velocidad = 400.0
 
 [node name="Sprite" parent="." index="0"]
 rotation = -1.5708
@@ -59,6 +60,9 @@ position = Vector2( 34.0008, -9.9974 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 autoplay = "spawn"
 anims/spawn = SubResource( 2 )
+
+[node name="DetectorObstaculo" type="RayCast2D" parent="." index="5"]
+collision_mask = 33
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
