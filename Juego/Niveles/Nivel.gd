@@ -16,16 +16,20 @@ export var meteorito:PackedScene = null
 export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var enemigo_interceptor:PackedScene = null
+export var rele_masa:PackedScene = null
 
 
 ## Atributos
 var meteoritos_totales:int = 0
 var player:Player = null
+var numero_bases_enemigas = 0
 
 ## Metodos
 func _ready() -> void:
 	conectar_seniales()
 	crear_contenedores()
+	player = DatosJuego.get_player_actual()
+	numero_bases_enemigas = contabilizar_bases_enemigas()
 	player = DatosJuego.get_player_actual()
 	
 ## Conexion señales externas
@@ -41,7 +45,16 @@ func conectar_seniales() -> void:
 	Eventos.connect("spawn_orbital", self,'_on_spawn_orbital')
 	
 ## Metodos Custom	
-
+func contabilizar_bases_enemigas()->int:
+	return $ContenedorBasesEnemigas.get_child_count()
+	
+	
+func crear_rele()->void:
+	var new_rele_masa:ReleDeMasa = rele_masa.instance()
+	new_rele_masa.global_position = player.global_position + crear_posicion_aleatoria(1000.0, 800.0)
+	add_child(new_rele_masa)
+	
+	
 func crear_posicion_aleatoria(rango_horizontal: float, rango_vertical: float) ->Vector2:
 	randomize()
 	var rand_x = rand_range(-rango_horizontal, rango_horizontal)
@@ -127,6 +140,22 @@ func controlar_meteoritos_restantes() ->void:
 		)
 
 
+func crear_explosion(
+	position:Vector2,
+	numero:int = 1,
+	intervalo: float = 0.3,
+	rangos_aleatorios:Vector2=Vector2(0.0, 0.0)
+	) -> void:
+		for i in range(numero):
+			var new_explosion:Node2D = explosion.instance()
+			new_explosion.global_position = position + crear_posicion_aleatoria(
+					rangos_aleatorios.x, 
+					rangos_aleatorios.y
+					)
+			add_child(new_explosion)
+			yield(get_tree().create_timer(intervalo),"timeout")
+			
+			
 ## Señales internas
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == 'Camera2D':
@@ -169,23 +198,14 @@ func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_pel
 
 func _on_base_destruida(base:Node2D, pos_partes:Array)->void:
 	for posicion  in pos_partes:
-		crear_explosion(posicion)
+		crear_explosion(posicion, 2.0)
 		yield(get_tree().create_timer(0.5),"timeout")
 	
+	numero_bases_enemigas -= 1
+	if numero_bases_enemigas == 0:
+		crear_rele()
 
-func crear_explosion(
-	position:Vector2,
-	numero:int = 1,
-	intervalo: float = 0.3,
-	rangos_aleatorios:Vector2=Vector2(0.0, 0.0)
-	) -> void:
-		for i in range(numero):
-			var new_explosion:Node2D = explosion.instance()
-			new_explosion.global_position = position + crear_posicion_aleatoria(
-					rangos_aleatorios.x, 
-					rangos_aleatorios.y
-					)
-			add_child(new_explosion)
-			yield(get_tree().create_timer(intervalo),"timeout")
 func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:
 	contenedor_enemigos.add_child(enemigo)
+
+

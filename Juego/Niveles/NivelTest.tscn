@@ -14,7 +14,7 @@
 [ext_resource path="res://Juego/Estacion/EstacionRecarga.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Juego/Naves/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Juego/Estacion/BaseEnemiga.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Juego/Estacion/EnemigoOrbital.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Juego/Rele_de_masa/ReleMasa.tscn" type="PackedScene" id=15]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
@@ -23,6 +23,7 @@ meteorito = ExtResource( 8 )
 explosion_meteorito = ExtResource( 10 )
 sector_meteoritos = ExtResource( 7 )
 enemigo_interceptor = ExtResource( 13 )
+rele_masa = ExtResource( 15 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -74,16 +75,9 @@ position = Vector2( 423, -174 )
 tipo_peligro = "Enemy"
 numero_peligros = 2
 
-[node name="BaseEnemiga" parent="." instance=ExtResource( 14 )]
-position = Vector2( -450, 788 )
-orbital = ExtResource( 15 )
+[node name="ContenedorBasesEnemigas" type="Node" parent="."]
 
-[node name="BaseEnemiga2" parent="." instance=ExtResource( 14 )]
-position = Vector2( 3127, 1483 )
-orbital = ExtResource( 15 )
-
-[node name="BaseEnemiga3" parent="." instance=ExtResource( 14 )]
-position = Vector2( 2085, -1203 )
-orbital = ExtResource( 15 )
+[node name="BaseEnemiga" parent="ContenedorBasesEnemigas" instance=ExtResource( 14 )]
+position = Vector2( -654, 1372 )
 
 [connection signal="tween_completed" from="CameraNivel/TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

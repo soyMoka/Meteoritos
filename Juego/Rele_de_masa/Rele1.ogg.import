@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Rele1.ogg-3fbeed641687bb773b13ae6efdd804b8.oggstr"
+
+[deps]
+
+source_file="res://Juego/Rele_de_masa/Rele1.ogg"
+dest_files=[ "res://.import/Rele1.ogg-3fbeed641687bb773b13ae6efdd804b8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
