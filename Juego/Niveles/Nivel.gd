@@ -167,7 +167,7 @@ func _on_nave_en_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_pel
 	elif tipo_peligro == 'Enemy':
 		crear_sector_enemigos(num_peligros)
 
-func _on_base_destruida(pos_partes:Array)->void:
+func _on_base_destruida(base:Node2D, pos_partes:Array)->void:
 	for posicion  in pos_partes:
 		crear_explosion(posicion)
 		yield(get_tree().create_timer(0.5),"timeout")

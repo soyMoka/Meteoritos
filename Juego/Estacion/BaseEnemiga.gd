@@ -15,13 +15,14 @@ var esta_destruida:bool = false
 func _ready() -> void:
 	$AnimationPlayer.play(elegir_animacion_aleatoria())
 	
-func _process(delta:float) -> void:
-	var player_objetivo:Player = DatosJuego.get_player_actual()
-	if not player_objetivo:
-		return
-	var dir_player:Vector2 = player_objetivo.global_position - global_position
-	var angulo_player:float = rad2deg(dir_player.angle())
-	print(angulo_player)
+#func _process(delta:float) -> void:
+#	var player_objetivo:Player = DatosJuego.get_player_actual()
+#	if not player_objetivo:
+#		return
+#
+#	var dir_player:Vector2 = player_objetivo.global_position - global_position
+#	var angulo_player:float = rad2deg(dir_player.angle())
+#	print(angulo_player)
 	
 ## Metodos Custom	
 func elegir_animacion_aleatoria() -> String:

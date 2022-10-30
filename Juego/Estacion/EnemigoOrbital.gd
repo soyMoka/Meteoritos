@@ -2,7 +2,7 @@ class_name EnemigoOrbital
 extends EnemigoBase
 
 ## Atributos Export
-export var rango_max_ataque: float = 1000.0
+export var rango_max_ataque: float = 800.0
 
 ## Atributos
 var base_duenia:Node2D
