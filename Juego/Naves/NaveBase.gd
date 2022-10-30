@@ -62,6 +62,7 @@ func recibir_danio(danio:float) -> void:
 		
 ## Señales internas	
 func _on_AnimationPlayer_animation_finished(anim_name: String) ->void:
+	print(anim_name)
 	if anim_name == 'spawn':
 		controlador_estados(ESTADO.VIVO)
 
