@@ -34,7 +34,10 @@ func controlar_energia(consumo:float)->void:
 	if energia > energia_original:
 		energia = energia_original
 	elif energia <= 0.0:
+		Eventos.emit_signal("ocultar_energia_escudo")
 		desactivar()
+		return
+	Eventos.emit_signal("cambio_energia_escudo", energia_original, energia)
 
 func controlar_colisionador(esta_desactivado:bool)->void:
 	$CollisionShape2D.set_deferred('disabled', esta_desactivado)
@@ -53,6 +56,7 @@ func desactivar() -> void:
 	esta_activado = false
 	controlar_colisionador(true)
 	$AnimationPlayer.play_backwards("activando")
+	Eventos.emit_signal("ocultar_energia_escudo")
 		
 ## Señales internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:

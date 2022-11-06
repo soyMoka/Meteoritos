@@ -54,6 +54,7 @@ func set_is_casting(cast: bool) -> void:
 		appear()
 	else:
 			#Para el sonido al soltar el click
+		Eventos.emit_signal("ocultar_energia_laser")
 		collision_particles.emitting = false
 		fill.visible = false
 		disappear()
@@ -93,6 +94,7 @@ func controlar_energia(consumo:float)->void:
 	energia += consumo
 	if energia > energia_original:
 		energia = energia_original		
+	Eventos.emit_signal("cambio_energia_laser", energia_original, energia)
 		
 		
 func appear() -> void:

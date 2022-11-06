@@ -28,6 +28,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action("recargar_laser")and player_en_zona:
 		nave_player.get_laser().controlar_energia(radio_energia_entregada)
 	
+	if event.is_action_released("recargar_escudo"):
+		Eventos.emit_signal('ocultar_energia_escudo')
+	elif event.is_action_released("recargar_laser"):
+		Eventos.emit_signal('ocultar_energia_laser')
+	
 ## Metodos Custom
 func  puede_recargar(event:InputEvent) -> bool:
 	var hay_input = event.is_action('recargar_escudo') or event.is_action('recargar_laser')
@@ -59,12 +64,17 @@ func _on_AreaColision_body_entered(body: Node) -> void:
 	if body.has_method('destruir'):
 		body.destruir()
 
+
 func _on_AreaRecarga_body_entered(body: Node) -> void:
 	if body is Player:
 		nave_player = body
 		player_en_zona = true
+		Eventos.emit_signal('detecto_zona_recarga', true)
 	
 func _on_AreaRecarga_body_exited(body: Node) -> void:
-	player_en_zona = false
-	if carga_sfx.playing:
-		carga_sfx.stop()
+	if body is Player:
+		player_en_zona = false
+		Eventos.emit_signal('detecto_zona_recarga', false)
+		Eventos.emit_signal('ocultar_energia_laser')
+		if carga_sfx.playing:
+			carga_sfx.stop()
