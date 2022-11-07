@@ -25,16 +25,7 @@ explosion_meteorito = ExtResource( 10 )
 sector_meteoritos = ExtResource( 7 )
 enemigo_interceptor = ExtResource( 13 )
 rele_masa = ExtResource( 15 )
-tiempo_limite = 40
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 3 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 302, 352 )
-
-[node name="EnemigoDummy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 647, 516 )
+tiempo_limite = 30
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
@@ -50,22 +41,44 @@ margin_bottom = 1591.0
 texture = ExtResource( 9 )
 stretch_mode = 2
 
-[node name="TriggersLluviaMeteoritos" type="Node" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 3 )
 
-[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 6 )]
-position = Vector2( 1684, 1023 )
-numero_peligros = 11
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 302, 352 )
+
+[node name="EnemigoDummy" parent="." instance=ExtResource( 5 )]
+position = Vector2( 647, 516 )
 
 [node name="CameraNivel" type="Camera2D" parent="."]
 script = ExtResource( 11 )
 
 [node name="TweenCamara" type="Tween" parent="CameraNivel"]
 
-[node name="Icon" type="Sprite" parent="."]
+[node name="TriggersLluviaMeteoritos" type="Node" parent="."]
+
+[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 6 )]
+position = Vector2( 1684, 1023 )
+numero_peligros = 11
 
 [node name="ContenedorEstaciones" type="Node" parent="."]
 
 [node name="EstacionDeRecarga" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
+position = Vector2( 1140, 1934 )
+energia = 50.0
+radio_energia_entregada = 0.1
+
+[node name="EstacionDeRecarga2" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
+position = Vector2( 1140, 1934 )
+energia = 50.0
+radio_energia_entregada = 0.1
+
+[node name="EstacionDeRecarga3" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
+position = Vector2( 1140, 1934 )
+energia = 50.0
+radio_energia_entregada = 0.1
+
+[node name="EstacionDeRecarga4" parent="ContenedorEstaciones" instance=ExtResource( 12 )]
 position = Vector2( 1140, 1934 )
 energia = 50.0
 radio_energia_entregada = 0.1

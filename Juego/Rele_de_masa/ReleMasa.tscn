@@ -205,7 +205,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 
-[node name="ReleMasa" type="Node2D"]
+[node name="ReleMasa" type="Node2D" groups=["minimap"]]
 script = ExtResource( 5 )
 
 [node name="Sprites" type="Node2D" parent="."]

@@ -177,6 +177,7 @@ func destruir_nivel() ->void:
 		1.5,
 		Vector2(300.0, 200.0)
 	)
+	
 	player.destruir()
 	
 	

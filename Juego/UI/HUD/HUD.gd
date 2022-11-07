@@ -57,7 +57,9 @@ func _on_actualizar_info_tiempo(tiempo_restante:int)->void:
 	info_tiempo_restante.modificar_texto(
 		'Tiempo restante\n%02d:%02d' % [minutos, segundos]
 	)
-	info_tiempo_restante.mostrar_suavizado()
+	if tiempo_restante % 10 == 0:
+		info_tiempo_restante.mostrar_suavizado()
+		
 	if tiempo_restante == 11:
 		info_tiempo_restante.set_auto_ocultar(false)
 	elif tiempo_restante == 0:
@@ -73,6 +75,8 @@ func _on_actualizar_energia_laser(energia_max:float, energia_actual:float)->void
 func _on_actualizar_energia_escudo(energia_max:float, energia_actual:float)->void:
 	info_escudo.mostrar()
 	info_escudo.actualizar_energia(energia_max, energia_actual)
+	
+	
 func _on_nave_destruida(nave:NaveBase, _posicion,_explosiones)->void:
 	if nave is Player:
 		get_tree().call_group('contenedor_info', 'set_esta_activo', false)
